@@ -91,3 +91,19 @@ public class Main{
 	}
 }
 ```
+
+>本题要注意以下几点：
+1. hasNext()和hasNextLine是有区别的。
+hasNext()
+Returns true if this scanner has another token in its input.
+hasNextLine()
+Returns true if there is another line in the input of this scanner.
+
+hasNext() 字符串中间必须有空格、Tab或者其他空白字符作为分隔符，则返回true，没有的话则返回false
+hasNextLine() 中间不必有空白字符
+
+You are consuming the value of next(), but asking for hasNext() and hasNextLine(). next(), per default, returns everything to the next whitespace(). 
+So you are iterating through all whitespace seperated strings, and after each of them you are asking about the nextLine().
+i   1   1 -> hasNextLine()? True. hasNext()? Also true.
+1   1 -> hasNextLine()? True. hasNext()? Also true (still a whitespace left)
+1 -> hasNextLine()? True (Line Seperator, probably). haxNext? False, no whitespace anymore.
